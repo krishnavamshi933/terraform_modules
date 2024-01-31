@@ -27,9 +27,10 @@ module "instances" {
   security_group_ids  = [module.security_groups.instance_sg_id, module.security_groups.private_instance_sg_id]
   key_name            = module.key_pair.key_name
 }
-
 module "nat" {
-  source              = "./modules/nat"
-  public_subnet_id    = module.subnets.public_subnet_id
-  private_subnet_id   = module.subnets.private_subnet_id
+  source               = "./modules/nat"
+  public_subnet_id     = module.subnets.public_subnet_id
+  private_subnet_id    = module.subnets.private_subnet_id
+  private_route_table_id = module.subnets.private_route_table_id
 }
+
